@@ -131,8 +131,8 @@ function editTrelloReport(bot, trello, userTag, userID, key, editSection, newCon
     //edit desc
     let pattern;
 
-    if(editSection === "system setting") {
-      pattern = editSection + "system settings?:\\n*\\s*([\\s\\S]*?)(?=(?:\\\n\\\n\\d))";
+    if(editSection === "system settings") {
+      pattern = "system settings:\\n*\\s*([\\s\\S]*?)(?=(?:\\\n\\\n\\d))";
     } else {
       pattern = editSection + "s?:\\s*\\n*\\s*([\\s\\S]*?)(?=(?:\\s*\\n)?#)";
     }

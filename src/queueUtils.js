@@ -178,9 +178,16 @@ function editDBReport(bot, trello, db, key, editSection, newContent, oldReportSt
   if(editSection === "short description") {
     db.run("UPDATE reports SET header = ? WHERE id = ?", [newContent, key]);
   } else {
-    let requiredFields = ["steps to reproduce", "expected result", "actual result", "client setting", "system setting"];
-    let thisIndex = requiredFields.indexOf(editSection);
-    let pattern = "(" + editSection + ")s?:\\s*(.*)(?=\\s" + requiredFields[thisIndex + 1] + ")s?";
+    let requiredFields;
+    let thisIndex;
+    let pattern;
+    if(editSection === "system settings") {
+      pattern = "(system setting)s?:(.*)";
+    } else {
+      requiredFields = ["steps to reproduce", "expected result", "actual result", "client setting", "system setting"];
+      thisIndex = requiredFields.indexOf(editSection);
+      pattern = "(" + editSection + ")s?:\\s*(.*)(?=\\s" + requiredFields[thisIndex + 1] + ")s?";
+    }
     let newRegex = new RegExp(pattern, "i");
     let newReport = oldReportString.replace(newRegex, utils.toTitleCase(editSection) + ": " + newContent);
     db.run("UPDATE reports SET reportString = ? WHERE id = ?", [newReport, key]);
