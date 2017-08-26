@@ -89,9 +89,7 @@ let delMsgCooldown = false;
 bot.on('messageCreate', (msg) => {
   let messageSplit = msg.content.split(' ');
   let command = messageSplit.shift();
-  if(!!msg.channel.guild && msg.channel.guild.id !== config.DTserverID) {
-    return;
-  }
+  if(!!msg.channel.guild && msg.channel.guild.id !== config.DTserverID) return;
 
   let userTag = msg.author.username + "#" + msg.author.discriminator;
   let userID = msg.author.id;
