@@ -59,23 +59,17 @@ function getURLs(inputText, currentMatches) {
   	let urlIdent = "$$URL" + ++identID + "$$";
     currentMatches.text = stringSplice(inputText, match.index, match[0].length, urlIdent);
     currentMatches.matches[urlIdent] = match[0];
-   currentMatches = getURLs(currentMatches.text, currentMatches);
+    currentMatches = getURLs(currentMatches.text, currentMatches);
   }
 
   return currentMatches;
 }
 
 function cleanText(txt, checkIfRemove) {
-
-  let whatToDo = "\\$&";
-  if(checkIfRemove) {
-    whatToDo = "";
-  }
-
   let ObjOfURLs = getURLs(txt);
   if(!ObjOfURLs.text) return txt;
 
-  let thisText = ObjOfURLs.text.replace(/[\*\`\~\_\ˋ]/gi, whatToDo);
+  let thisText = ObjOfURLs.text.replace(/[\*\`\~\_\ˋ]/gi, "");
 
   for (let prop in ObjOfURLs.matches) {
     thisText = thisText.replace(prop, ObjOfURLs.matches[prop]);
