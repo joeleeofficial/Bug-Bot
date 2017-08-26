@@ -106,8 +106,8 @@ let submitCommand = {
           utils.botReply(bot, userID, channelID, "please include a short description of your problem to use as a title! `<short descriptions of the problem>` followed by a pipe `|`!", command, msg.id, true);
           return;
         }
-
-        let reportCapLinks = report.replace(/([(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/=]*))/gi, "<$1>");
+        
+        let reportCapLinks = report.replace(/([--:\w?@%&+~#=]*\.[a-z]{2,4}\/{0,2}(?:[?&](?:\w+)=(?:\w+)+|[--:\w?@%&+~#=]+)?)/gi, "");
 
         const regPattern = /\b(steps to reproduce|expected result|actual result|client setting|system setting)s?:?/gi;
         let matches;

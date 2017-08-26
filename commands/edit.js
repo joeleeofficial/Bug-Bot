@@ -22,6 +22,8 @@ let edit = {
     let key = matchString[1];
     let editSection = matchString[2];
     let newContent = matchString[3];
+    newContent = newContent.replace(/([--:\w?@%&+~#=]*\.[a-z]{2,4}\/{0,2}(?:[?&](?:\w+)=(?:\w+)+|[--:\w?@%&+~#=]+)?)/gi, "");
+    
     //only reporter and mods+ can edit
     db.get("SELECT userID, reportString, reportMsgID, reportStatus, trelloURL FROM reports WHERE trelloURL = ? OR id = ?", [key, key], function(error, report) {
 
