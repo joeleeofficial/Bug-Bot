@@ -125,10 +125,13 @@ bot.on('messageCreate', (msg) => {
         //Tell the user they're posting the command in the wrong channel?
       }
     }else {
-      // Add channel check
       //Tell the user they don't have permission for that command
       if(command === "!attach") {
         utils.botReply(bot, userID, channelID, "you do not have access to that command", command, msg.id, true);
+      }
+      let rightChannel = channelID === config.channels.queueChannel || channelID === config.channels.iosChannel || channelID === config.channels.linuxChannel || channelID === config.channels.androidChannel || channelID === config.channels.canaryChannel;
+      if (rightChannel) {
+        bot.deleteMessage(channelID, msgID).catch(() => {});
       }
     }
   }else {
