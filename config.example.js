@@ -24,7 +24,10 @@ var config = {
     linuxTesterRole: '278229255169638410',    //linux role
     trelloModRole: '197400761104203776',      //trello mod role
     everybodyRole: 'everybody',               //fake role for everyone
-    initiateRole: '332912085577105408'         //Bug hunter charter role
+    initiateRole: '332912085577105408',       //Bug hunter charter role
+    windowsRole: '351008373669494794',        //Windows Role
+    macRole: '351008099978706944',            //Mac role
+    canaryRole: '351008402052481025'          //Canary Role
   },
 
   cards: {
