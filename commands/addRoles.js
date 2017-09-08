@@ -4,7 +4,7 @@ const customConfig = require('../configEdit');
 const utils = require("../src/utils");
 
 let addRoles = {
-  pattern: /!ios|!android|!linux/i,
+  pattern: /!ios|!android|!linux|!windows|!mac|!canary/i,
   execute: function(bot, channelID, userTag, userID, command, msg) {
     let allRoles = msg.member.roles;
     let cn = command.toLowerCase();
